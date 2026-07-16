@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="ESP32 MQTT Energy Meter 撠?撅內???閬死?蜓閬死??擃??祈? GitHub repository 撠汗??
+      content="ESP32 MQTT Energy Meter project showcase with firmware versions, architecture, and GitHub links."
     />
     <title>esp32-mqtt-energy-meter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -112,10 +112,7 @@
         border-radius: 999px;
         padding: 10px 14px;
         font-size: 12px;
-        transition:
-          transform 0.2s ease,
-          border-color 0.2s ease,
-          background 0.2s ease;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
 
       .cta.primary {
@@ -446,7 +443,10 @@
         <section class="panel hero-copy" id="overview">
           <span class="pill">GitHub Pages ready</span>
           <p>
-            ??repo ?渡?鈭?ESP32 MQTT Energy Meter ???湔?????餉”霈??            OLED 憿舐內?QTT 銝?匱?餃?批?G90 撱嗡撓??皜祆?????            ?活??銝?閬死?蜓??霈????澆停?賣????隞亙?蝷箇?蝖祇?撠???          </p>
+            This showcase presents the ESP32 MQTT Energy Meter project in one place.
+            It brings together meter reading, OLED output, MQTT telemetry, relay control,
+            SG90 expansion, and sensor integration in a visual format that is easier to browse.
+          </p>
           <div class="hero-actions">
             <a class="cta primary" href="#source">Browse firmware</a>
             <a class="cta" href="#readme-preview">Read project overview</a>
@@ -469,7 +469,8 @@
             <img src="./assets/hero-energy.svg" alt="Stylized energy meter dashboard illustration" />
           </div>
           <div class="visual-caption">
-            ?芾ˊ SVG 銝餉?閬綽???餉”?QTT ??OLED ????嚗?靘? GitHub Pages 擐???          </div>
+            Custom SVG hero art focused on the meter, MQTT flow, and OLED dashboard.
+          </div>
         </aside>
       </main>
 
@@ -477,23 +478,24 @@
         <div>
           <h2>Visual highlights</h2>
           <p class="lead">
-            ??撠???銵摰寡????摰寞??圾?漁暺?憛?霈?????賢翰???????暻潦?          </p>
+            These highlights turn the technical work into something easier to scan for non-developers.
+          </p>
         </div>
         <div class="feature-grid">
           <article class="feature">
             <div class="feature-icon">01</div>
             <h3>Live telemetry</h3>
-            <p>?憯瘚???蝝舐??駁?頧? MQTT 鞈?瘚??嫣噶?亙?嗡??銵冽??/p>
+            <p>Reads meter data and publishes it as MQTT JSON for dashboards or automation systems.</p>
           </article>
           <article class="feature">
             <div class="feature-icon">02</div>
             <h3>Readable UI</h3>
-            <p>OLED ??U8g2 隞鞎痊?冽璈垢?湔憿舐內?單?鞈?嚗?游?蝷箸?敺???/p>
+            <p>OLED and U8g2 screens show the current readings and device status in a compact layout.</p>
           </article>
           <article class="feature">
             <div class="feature-icon">03</div>
             <h3>Expandable control</h3>
-            <p>蝜潮?具G90 ??皜砍?撌脩??渡?憟踝?敺?閬??啣??賭????/p>
+            <p>Relay, SG90, and sensor versions are organized so future features can be added cleanly.</p>
           </article>
         </div>
         <div class="mini-strip">
@@ -510,45 +512,44 @@
         <div>
           <h2>Project overview</h2>
           <p class="lead">
-            ??畾菜? README ??暺?交??銝?霈????閬??蝷粹?撠梯??撠??窗??          </p>
+            The README content is summarized here so visitors can understand the project without leaving the page.
+          </p>
         </div>
         <div class="cards">
           <article class="card">
             <h3>What this repo is</h3>
-            <p>
-              ?銝?? ESP32 ?餉”霈?LED 憿舐內?QTT 銝??嗅??賣?末???游?獢???            </p>
+            <p>A complete ESP32 project collection covering meter reading, OLED output, MQTT telemetry, and control features.</p>
           </article>
           <article class="card">
             <h3>How it evolved</h3>
-            <p>
-              敺???霈銵刻?憿舐內?嚗郊? MQTT?elay?G90 ??皜砍?游?嚗耦?撅內????            </p>
+            <p>It evolved from simple meter reading and display sketches into MQTT, relay, SG90, and sensor integration.</p>
           </article>
           <article class="card">
             <h3>Safety</h3>
-            <p>
-              ?祕 Wi-Fi ??MQTT 撣喳?銝??暸?repo嚗??`secrets.example.h` 雿摰蝭??            </p>
+            <p>All real Wi-Fi and MQTT credentials are excluded from the repository. Use `secrets.example.h` as the safe template.</p>
           </article>
         </div>
       </section>
 
       <section class="section" id="architecture">
         <div>
-          <h2>撠??嗆?</h2>
+          <h2>Architecture</h2>
           <p class="lead">
-            repo 撌脫????擃??祆???舐汗??firmware 蝯?嚗蒂????痊隞餃???璆??嫣噶敺?蝬剛風??蝷箝?          </p>
+            The firmware tree is organized by version so the project is easy to browse, maintain, and present.
+          </p>
         </div>
         <div class="cards">
           <article class="card">
             <h3>Meter Reading</h3>
-            <p>隞?`Serial2` ?交?餉” frame嚗?鞎祈圾?憯瘚??敞蝛?????蝑?雿?/p>
+            <p>The first working version that brings up the meter protocol and raw data flow.</p>
           </article>
           <article class="card">
             <h3>Display</h3>
-            <p>雿輻 OLED ??U8g2 ??單?鞈?嚗?閮剖??祆??湔???????/p>
+            <p>Shows live readings and status on a 128x64 OLED.</p>
           </article>
           <article class="card">
             <h3>Connectivity</h3>
-            <p>?? Wi-Fi ??MQTT 撠?? broker嚗蒂?舀 relay ??SG90 撱嗡撓?批??/p>
+            <p>Packages measurement values as JSON and publishes them to the MQTT broker.</p>
           </article>
         </div>
       </section>
@@ -557,68 +558,69 @@
         <div>
           <h2>Firmware map</h2>
           <p class="lead">
-            隞乩??舀????祉????嚗?????GitHub ????臭誑?湔???蝣潦?          </p>
+            These entries map directly to the firmware folders in the repository and provide a quick path back to code.
+          </p>
         </div>
         <div class="timeline">
           <div class="step">
             <div class="tag">01</div>
             <div>
               <h3>Smart Meter</h3>
-              <p>?箇?霈銵函??穿??? meter protocol ??????/p>
+              <p>The first working version that brings up the meter protocol and raw data flow.</p>
             </div>
           </div>
           <div class="step">
             <div class="tag">02</div>
             <div>
               <h3>OLED Dashboard</h3>
-              <p>??128x64 OLED 銝＊蝷箏??潸????/p>
+              <p>Shows live readings and status on a 128x64 OLED.</p>
             </div>
           </div>
           <div class="step">
             <div class="tag">03</div>
             <div>
               <h3>MQTT Telemetry</h3>
-              <p>??皜砍澆?鋆? JSON 敺 MQTT broker??/p>
+              <p>Packages measurement values as JSON and publishes them to the MQTT broker.</p>
             </div>
           </div>
           <div class="step">
             <div class="tag">04</div>
             <div>
               <h3>Relay Control</h3>
-              <p>? MQTT ?誘?批蝜潮?券???/p>
+              <p>Adds MQTT commands for relay on/off control.</p>
             </div>
           </div>
           <div class="step">
             <div class="tag">05</div>
             <div>
               <h3>SG90 Expansion</h3>
-              <p>撱嗡撓?舀 SG90 隡箸??批嚗?撠??游??氬?/p>
+              <p>Extends the project with SG90 servo control.</p>
             </div>
           </div>
           <div class="step">
             <div class="tag">06</div>
             <div>
               <h3>Sensor Fusion</h3>
-              <p>?憿??葫?冽??蝷箇??湧脤???撘?/p>
+              <p>Adds extra sensor integration to show a more advanced extension path.</p>
             </div>
           </div>
         </div>
         <div class="cards">
           <article class="card">
             <h3>Firmware README</h3>
-            <p>?渡????擃??祉??券榆?啗??亙嚗靘輯??翰??閫???冗蝯???/p>
+            <p>Summarizes every firmware version, what it does, and how the folders relate to each other.</p>
           </article>
           <article class="card">
             <h3>Helper headers</h3>
-            <p>?銵典?摰雯頝航身摰?憿舐內?賢????舫??函? `.h` 瑼?霈??祆?銋暹楊??/p>
+            <p>Breaks meter protocol, network setup, and display helpers into reusable `.h` files.</p>
           </article>
           <article class="card">
             <h3>Secrets template</h3>
-            <p>??祕?董撖撌脫?? placeholder嚗靽? `secrets.example.h` 靘撌勗‵撖怒?/p>
+            <p>All real credentials are replaced with placeholders, leaving `secrets.example.h` as the safe template.</p>
           </article>
         </div>
         <div class="links">
-          <a class="chip" href="#readme-preview">Project overview</a>
+          <a class="chip" href="https://github.com/kuos945/esp32-mqtt-energy-meter/blob/main/README.md">Project README</a>
           <a class="chip" href="https://github.com/kuos945/esp32-mqtt-energy-meter/blob/main/firmware/README.md">Firmware README</a>
           <a class="chip" href="https://github.com/kuos945/esp32-mqtt-energy-meter/blob/main/firmware/01_smart_meter/14_smart_meter.ino">Smart Meter</a>
           <a class="chip" href="https://github.com/kuos945/esp32-mqtt-energy-meter/blob/main/firmware/02_energy_oled/14_ENERGY_OLED.ino">OLED Dashboard</a>
