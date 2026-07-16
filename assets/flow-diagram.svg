@@ -1,0 +1,59 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="20" x2="1080" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111C"/>
+      <stop offset="1" stop-color="#0B1726"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="140" y1="80" x2="1060" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68E1FD"/>
+      <stop offset="0.5" stop-color="#9D7BFF"/>
+      <stop offset="1" stop-color="#48D49A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="520" rx="36" fill="url(#bg)"/>
+  <g opacity="0.18">
+    <path d="M80 80H1120" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+    <path d="M80 440H1120" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+  </g>
+
+  <g>
+    <rect x="90" y="170" width="180" height="110" rx="24" fill="#0F1D31" stroke="#68E1FD" stroke-opacity="0.4"/>
+    <text x="126" y="218" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="16">Serial2</text>
+    <text x="126" y="246" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Meter</text>
+  </g>
+  <path d="M270 225H360" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M342 213L360 225L342 237" stroke="#9D7BFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="360" y="140" width="220" height="170" rx="28" fill="#0E1A2B" stroke="#9D7BFF" stroke-opacity="0.45"/>
+    <text x="392" y="194" fill="#9D7BFF" font-family="IBM Plex Mono, monospace" font-size="16">Decode</text>
+    <text x="392" y="228" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Voltage</text>
+    <text x="392" y="260" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Current</text>
+    <text x="392" y="292" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Power</text>
+  </g>
+  <path d="M580 225H670" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M652 213L670 225L652 237" stroke="#68E1FD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="670" y="140" width="220" height="170" rx="28" fill="#0E1A2B" stroke="#68E1FD" stroke-opacity="0.45"/>
+    <text x="702" y="194" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="16">Publish</text>
+    <text x="702" y="228" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">MQTT</text>
+    <text x="702" y="260" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">JSON payload</text>
+    <text x="702" y="288" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">Broker / dashboard</text>
+  </g>
+  <path d="M890 225H980" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M962 213L980 225L962 237" stroke="#48D49A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="980" y="140" width="130" height="170" rx="28" fill="#0E1A2B" stroke="#48D49A" stroke-opacity="0.45"/>
+    <text x="1016" y="196" fill="#48D49A" font-family="IBM Plex Mono, monospace" font-size="16">UI</text>
+    <text x="1016" y="236" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">OLED</text>
+    <text x="1016" y="270" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">Relay</text>
+  </g>
+
+  <g>
+    <rect x="175" y="360" width="850" height="64" rx="18" fill="#09111B" stroke="#22334D"/>
+    <text x="206" y="400" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">Firmware versions: 01 smart_meter | 02 energy_oled | 03 energy_mqtt | 04 relay | 05 relay_sg90 | 06 sensor_fusion</text>
+  </g>
+</svg>
