@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="ESP32 MQTT Energy Meter 專案展示頁，整理韌體版本、架構與 GitHub repository 內容。"
+      content="ESP32 MQTT Energy Meter 撠?撅內???閬死?蜓閬死??擃??祈? GitHub repository 撠汗??
     />
     <title>esp32-mqtt-energy-meter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,18 +16,18 @@
     />
     <style>
       :root {
-        --bg: #08131f;
+        --bg: #07111c;
         --bg2: #0d1f31;
-        --panel: rgba(10, 20, 31, 0.72);
-        --panel-strong: rgba(13, 27, 44, 0.92);
+        --panel: rgba(10, 20, 31, 0.74);
+        --panel-strong: rgba(13, 27, 44, 0.94);
         --line: rgba(154, 190, 255, 0.18);
-        --text: #e8f1ff;
-        --muted: #9db2cc;
+        --text: #ecf4ff;
+        --muted: #a0b6cf;
         --accent: #68e1fd;
         --accent2: #9d7bff;
-        --good: #48d49a;
+        --accent3: #48d49a;
         --warning: #ffcc66;
-        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --shadow: 0 28px 72px rgba(0, 0, 0, 0.38);
       }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -36,9 +36,9 @@
         font-family: "Space Grotesk", system-ui, sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at 20% 20%, rgba(104, 225, 253, 0.16), transparent 30%),
-          radial-gradient(circle at 80% 10%, rgba(157, 123, 255, 0.18), transparent 28%),
-          radial-gradient(circle at 80% 80%, rgba(72, 212, 154, 0.11), transparent 30%),
+          radial-gradient(circle at 12% 15%, rgba(104, 225, 253, 0.14), transparent 24%),
+          radial-gradient(circle at 88% 12%, rgba(157, 123, 255, 0.18), transparent 24%),
+          radial-gradient(circle at 80% 78%, rgba(72, 212, 154, 0.14), transparent 24%),
           linear-gradient(160deg, var(--bg), var(--bg2));
         min-height: 100vh;
       }
@@ -47,20 +47,20 @@
         position: fixed;
         inset: 0;
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 90%);
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 44px 44px;
+        opacity: 0.28;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.84), transparent 88%);
         pointer-events: none;
-        opacity: 0.35;
       }
-      .wrap { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 56px; position: relative; }
-      .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0 28px; }
-      .brand { display: flex; flex-direction: column; gap: 4px; }
-      .brand .kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-      .brand h1 { margin: 0; font-size: clamp(2.4rem, 5vw, 4.9rem); line-height: 0.95; letter-spacing: -0.06em; }
+      .wrap { width: min(1180px, calc(100vw - 28px)); margin: 0 auto; padding: 24px 0 52px; position: relative; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0 24px; }
+      .brand { display: grid; gap: 6px; }
+      .brand .kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+      .brand h1 { margin: 0; font-size: clamp(2.2rem, 4.9vw, 4.8rem); line-height: 0.95; letter-spacing: -0.07em; }
       .nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
-      .nav a, .pill, .chip {
+      .nav a, .pill, .chip, .cta {
         font-family: "IBM Plex Mono", monospace;
         text-decoration: none;
         color: var(--text);
@@ -71,33 +71,29 @@
         font-size: 12px;
         transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
-      .nav a:hover { transform: translateY(-1px); border-color: rgba(104, 225, 253, 0.45); background: rgba(104, 225, 253, 0.1); }
-      .hero { display: grid; grid-template-columns: 1.45fr 0.95fr; gap: 18px; align-items: stretch; }
+      .cta.primary { background: linear-gradient(135deg, rgba(104, 225, 253, 0.16), rgba(157, 123, 255, 0.18)); border-color: rgba(104, 225, 253, 0.35); }
+      .nav a:hover, .cta:hover, .chip:hover { transform: translateY(-1px); border-color: rgba(104, 225, 253, 0.45); background: rgba(104, 225, 253, 0.1); }
+      .hero { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 18px; align-items: stretch; }
       .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); backdrop-filter: blur(16px); }
-      .panel.hero-copy { padding: 28px; position: relative; overflow: hidden; }
-      .hero-copy p { margin: 18px 0 0; color: var(--muted); font-size: 1.05rem; max-width: 68ch; line-height: 1.7; }
-      .status-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+      .hero-copy { padding: 28px; position: relative; overflow: hidden; }
+      .hero-copy::after { content: ""; position: absolute; inset: auto -14% -20% auto; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(104, 225, 253, 0.16), transparent 68%); filter: blur(8px); pointer-events: none; }
+      .hero-copy p { margin: 16px 0 0; color: var(--muted); font-size: 1.05rem; max-width: 66ch; line-height: 1.75; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .status-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
       .status { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
-      .status .dot { width: 9px; height: 9px; border-radius: 999px; background: var(--good); box-shadow: 0 0 0 5px rgba(72, 212, 154, 0.14); }
-      .hero-aside { padding: 24px; display: grid; gap: 14px; }
-      .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .metric { padding: 16px; border-radius: 20px; background: var(--panel-strong); border: 1px solid var(--line); }
-      .metric .label { font-family: "IBM Plex Mono", monospace; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
-      .metric .value { margin-top: 10px; font-size: 1.5rem; letter-spacing: -0.04em; }
-      .meter-card { border-radius: 24px; padding: 18px; background: linear-gradient(180deg, rgba(8, 19, 31, 0.5), rgba(10, 20, 31, 0.9)); border: 1px solid rgba(104, 225, 253, 0.15); position: relative; min-height: 210px; overflow: hidden; }
-      .meter-screen { display: grid; gap: 10px; }
-      .meter-screen .screen-header { display: flex; justify-content: space-between; align-items: center; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); }
-      .meter-screen .readout { margin-top: 10px; padding: 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(104, 225, 253, 0.12); }
-      .readout .row { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
-      .readout .row:last-child { border-bottom: 0; }
-      .readout .row b { color: var(--accent); font-weight: 500; }
+      .dot { width: 9px; height: 9px; border-radius: 999px; background: var(--accent3); box-shadow: 0 0 0 5px rgba(72, 212, 154, 0.14); }
+      .hero-visual { padding: 18px; display: grid; gap: 14px; }
+      .visual-frame { overflow: hidden; position: relative; border-radius: 26px; border: 1px solid rgba(104, 225, 253, 0.14); background: radial-gradient(circle at 20% 20%, rgba(104, 225, 253, 0.18), transparent 30%), radial-gradient(circle at 80% 18%, rgba(157, 123, 255, 0.2), transparent 32%), linear-gradient(180deg, rgba(10, 20, 31, 0.94), rgba(6, 12, 20, 0.96)); min-height: 100%; }
+      .visual-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .visual-caption { padding: 14px 16px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); line-height: 1.6; }
       .section { margin-top: 18px; display: grid; gap: 18px; }
       .section h2 { margin: 0 0 6px; font-size: 1.6rem; letter-spacing: -0.04em; }
       .section p.lead { margin: 0; color: var(--muted); line-height: 1.7; }
-      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-      .card { padding: 18px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
-      .card h3 { margin: 0 0 10px; font-size: 1.05rem; }
-      .card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
+      .feature-grid, .cards { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .feature, .card { padding: 18px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
+      .feature h3, .card h3 { margin: 0 0 10px; font-size: 1.05rem; }
+      .feature p, .card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
+      .feature-icon { width: 48px; height: 48px; border-radius: 16px; margin-bottom: 14px; background: linear-gradient(135deg, rgba(104, 225, 253, 0.2), rgba(157, 123, 255, 0.22)); border: 1px solid rgba(104, 225, 253, 0.22); display: grid; place-items: center; color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: 15px; }
       .timeline { display: grid; gap: 12px; }
       .step { display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 16px 18px; border-radius: 22px; background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(154, 190, 255, 0.12); }
       .step .tag { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 12px; letter-spacing: 0.12em; }
@@ -105,18 +101,20 @@
       .step p { margin: 0; color: var(--muted); line-height: 1.6; }
       .links { display: flex; flex-wrap: wrap; gap: 10px; }
       .chip { display: inline-flex; align-items: center; gap: 8px; }
-      .chip::before { content: "•"; color: var(--accent); }
+      .chip::before { content: "??; color: var(--accent); }
       .footer { margin-top: 18px; padding: 18px 0 0; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
       .code { margin-top: 14px; padding: 16px; border-radius: 18px; border: 1px solid rgba(104, 225, 253, 0.18); background: rgba(4, 10, 16, 0.72); overflow-x: auto; font-family: "IBM Plex Mono", monospace; font-size: 12px; line-height: 1.6; color: #dceaff; }
       .code span { color: var(--accent); }
+      .mini-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .mini-tile { padding: 14px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04); overflow: hidden; }
+      .mini-tile img { display: block; width: 100%; height: auto; }
       @media (max-width: 960px) {
-        .hero, .cards { grid-template-columns: 1fr; }
+        .hero, .feature-grid, .cards, .mini-strip { grid-template-columns: 1fr; }
         .topbar { flex-direction: column; align-items: flex-start; }
       }
       @media (max-width: 640px) {
-        .wrap { width: min(100vw - 20px, 1180px); padding-top: 18px; }
-        .panel.hero-copy, .hero-aside { padding: 18px; }
-        .metric-grid { grid-template-columns: 1fr; }
+        .wrap { width: min(100vw - 18px, 1180px); padding-top: 16px; }
+        .hero-copy, .hero-visual { padding: 16px; }
         .step { grid-template-columns: 1fr; gap: 8px; }
       }
     </style>
@@ -130,8 +128,8 @@
         </div>
         <nav class="nav" aria-label="Section navigation">
           <a href="#overview">Overview</a>
+          <a href="#highlights">Highlights</a>
           <a href="#architecture">Architecture</a>
-          <a href="#versions">Versions</a>
           <a href="#source">Source</a>
         </nav>
       </header>
@@ -140,20 +138,15 @@
         <section class="panel hero-copy" id="overview">
           <span class="pill">GitHub Pages ready</span>
           <p>
-            這個 repo 整理了 ESP32 MQTT Energy Meter 的完整成果，包含電表讀取、
-            OLED 顯示、MQTT 上報、繼電器控制、SG90 延伸與感測整合等版本。首頁提供
-            專案導覽、架構摘要與韌體版本入口，適合直接作為展示頁使用。
-          </p>
+            ??repo ?渡?鈭?ESP32 MQTT Energy Meter ???湔?????餉”霈??            OLED 憿舐內?QTT 銝?匱?餃?批?G90 撱嗡撓??皜祆?????            ?活??銝?閬死?蜓??霈????澆停?賣????隞亙?蝷箇?蝖祇?撠???          </p>
+          <div class="hero-actions">
+            <a class="cta primary" href="#source">Browse firmware</a>
+            <a class="cta" href="./README.md">Open README</a>
+          </div>
           <div class="status-row">
             <div class="status"><span class="dot"></span> MQTT telemetry</div>
-            <div class="status">
-              <span class="dot" style="background: var(--accent2); box-shadow: 0 0 0 5px rgba(157, 123, 255, 0.14)"></span>
-              OLED dashboard
-            </div>
-            <div class="status">
-              <span class="dot" style="background: var(--warning); box-shadow: 0 0 0 5px rgba(255, 204, 102, 0.14)"></span>
-              Relay & servo control
-            </div>
+            <div class="status"><span class="dot" style="background: var(--accent2); box-shadow: 0 0 0 5px rgba(157, 123, 255, 0.14)"></span> OLED dashboard</div>
+            <div class="status"><span class="dot" style="background: var(--warning); box-shadow: 0 0 0 5px rgba(255, 204, 102, 0.14)"></span> Relay & servo control</div>
           </div>
           <div class="code" aria-label="Project snippet">
             <div><span>Serial2</span> -> Meter frame</div>
@@ -163,95 +156,111 @@
           </div>
         </section>
 
-        <aside class="panel hero-aside">
-          <div class="metric-grid">
-            <div class="metric">
-              <div class="label">Firmware stages</div>
-              <div class="value">6</div>
-            </div>
-            <div class="metric">
-              <div class="label">Core sensors</div>
-              <div class="value">3+</div>
-            </div>
-            <div class="metric">
-              <div class="label">Display stacks</div>
-              <div class="value">2</div>
-            </div>
-            <div class="metric">
-              <div class="label">MQTT topics</div>
-              <div class="value">2</div>
-            </div>
+        <aside class="panel hero-visual">
+          <div class="visual-frame">
+            <img src="../assets/hero-energy.svg" alt="Stylized energy meter dashboard illustration" />
           </div>
-          <div class="meter-card">
-            <div class="meter-screen">
-              <div class="screen-header">
-                <span>ENERGY METER</span>
-                <span>ONLINE</span>
-              </div>
-              <div class="readout">
-                <div class="row"><span>V</span><b>110.2 V</b></div>
-                <div class="row"><span>I</span><b>0.532 A</b></div>
-                <div class="row"><span>P</span><b>58.4 W</b></div>
-                <div class="row"><span>E</span><b>1.274 kWh</b></div>
-                <div class="row"><span>PF</span><b>0.97</b></div>
-              </div>
-            </div>
-          </div>
+          <div class="visual-caption">
+            ?芾ˊ SVG 銝餉?閬綽???餉”?QTT ??OLED ????嚗?靘? GitHub Pages 擐???          </div>
         </aside>
       </main>
 
+      <section class="section" id="highlights">
+        <div>
+          <h2>Visual highlights</h2>
+          <p class="lead">
+            ??撠???銵摰寡????摰寞??圾?漁暺?憛?霈?????賢翰???????暻潦?          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon">01</div>
+            <h3>Live telemetry</h3>
+            <p>?憯瘚???蝝舐??駁?頧? MQTT 鞈?瘚??嫣噶?亙?嗡??銵冽??/p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">02</div>
+            <h3>Readable UI</h3>
+            <p>OLED ??U8g2 隞鞎痊?冽璈垢?湔憿舐內?單?鞈?嚗?游?蝷箸?敺???/p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">03</div>
+            <h3>Expandable control</h3>
+            <p>蝜潮?具G90 ??皜砍?撌脩??渡?憟踝?敺?閬??啣??賭????/p>
+          </article>
+        </div>
+        <div class="mini-strip">
+          <div class="mini-tile">
+            <img src="../assets/flow-diagram.svg" alt="System flow diagram" />
+          </div>
+          <div class="mini-tile">
+            <img src="../assets/hero-energy.svg" alt="Energy meter illustration preview" />
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="architecture">
         <div>
-          <h2>專案架構</h2>
+          <h2>撠??嗆?</h2>
           <p class="lead">
-            repo 已把原本的韌體版本整理成可瀏覽的 firmware 結構，並把各版本的責任劃分清楚，方便後續維護與展示。
-          </p>
+            repo 撌脫????擃??祆???舐汗??firmware 蝯?嚗蒂????痊隞餃???璆??嫣噶敺?蝬剛風??蝷箝?          </p>
         </div>
         <div class="cards">
           <article class="card">
             <h3>Meter Reading</h3>
-            <p>以 `Serial2` 接收電表 frame，負責解析電壓、電流、功率、累積電量與功率因數等欄位。</p>
+            <p>隞?`Serial2` ?交?餉” frame嚗?鞎祈圾?憯瘚??敞蝛?????蝑?雿?/p>
           </article>
           <article class="card">
             <h3>Display</h3>
-            <p>使用 OLED 與 U8g2 呈現即時資訊，適合在設備本機直接看見運作狀態。</p>
+            <p>雿輻 OLED ??U8g2 ??單?鞈?嚗?閮剖??祆??湔???????/p>
           </article>
           <article class="card">
             <h3>Connectivity</h3>
-            <p>透過 Wi-Fi 與 MQTT 將資料送到 broker，並支援 relay 與 SG90 延伸控制。</p>
+            <p>?? Wi-Fi ??MQTT 撠?? broker嚗蒂?舀 relay ??SG90 撱嗡撓?批??/p>
           </article>
-        </div>
-      </section>
-
-      <section class="section" id="versions">
-        <div>
-          <h2>韌體版本</h2>
-          <p class="lead">這些版本對應 repo 中的 firmware 目錄，適合作為展示頁上的導覽入口。</p>
-        </div>
-        <div class="timeline">
-          <div class="step"><div class="tag">01</div><div><h3>Smart Meter</h3><p>基礎讀表版本，先把 meter protocol 與資料流打通。</p></div></div>
-          <div class="step"><div class="tag">02</div><div><h3>OLED Dashboard</h3><p>在 128x64 OLED 上顯示即時數值與狀態。</p></div></div>
-          <div class="step"><div class="tag">03</div><div><h3>MQTT Telemetry</h3><p>把量測值封裝成 JSON 後送到 MQTT broker。</p></div></div>
-          <div class="step"><div class="tag">04</div><div><h3>Relay Control</h3><p>加入 MQTT 指令控制繼電器開關。</p></div></div>
-          <div class="step"><div class="tag">05</div><div><h3>SG90 Expansion</h3><p>延伸支援 SG90 伺服控制，讓專案更完整。</p></div></div>
-          <div class="step"><div class="tag">06</div><div><h3>Sensor Fusion</h3><p>加入額外感測器整合，示範更進階的擴充方式。</p></div></div>
         </div>
       </section>
 
       <section class="section" id="source">
         <div>
-          <h2>Repo 導覽</h2>
-          <p class="lead">以下連結可直接進入 repo 內的重要檔案，方便瀏覽專案成果與韌體版本。</p>
+          <h2>??????/h2>
+          <p class="lead">
+            隞乩????撠? repo 銝剔? firmware ?桅?嚗?撅內???芣憟賜?嚗??賜?亙??啁?撘Ⅳ??          </p>
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <div class="tag">01</div>
+            <div><h3>Smart Meter</h3><p>?箇?霈銵函??穿??? meter protocol ??????/p></div>
+          </div>
+          <div class="step">
+            <div class="tag">02</div>
+            <div><h3>OLED Dashboard</h3><p>??128x64 OLED 銝＊蝷箏??潸????/p></div>
+          </div>
+          <div class="step">
+            <div class="tag">03</div>
+            <div><h3>MQTT Telemetry</h3><p>??皜砍澆?鋆? JSON 敺 MQTT broker??/p></div>
+          </div>
+          <div class="step">
+            <div class="tag">04</div>
+            <div><h3>Relay Control</h3><p>? MQTT ?誘?批蝜潮?券???/p></div>
+          </div>
+          <div class="step">
+            <div class="tag">05</div>
+            <div><h3>SG90 Expansion</h3><p>撱嗡撓?舀 SG90 隡箸??批嚗?撠??游??氬?/p></div>
+          </div>
+          <div class="step">
+            <div class="tag">06</div>
+            <div><h3>Sensor Fusion</h3><p>?憿??葫?冽??蝷箇??湧脤???撘?/p></div>
+          </div>
         </div>
         <div class="links">
-          <a class="chip" href="./README.md">Project README</a>
-          <a class="chip" href="./firmware/README.md">Firmware README</a>
-          <a class="chip" href="./firmware/01_smart_meter/14_smart_meter.ino">Smart Meter</a>
-          <a class="chip" href="./firmware/02_energy_oled/14_ENERGY_OLED.ino">OLED Dashboard</a>
-          <a class="chip" href="./firmware/03_energy_mqtt/16_energy_mqtt.ino">MQTT Telemetry</a>
-          <a class="chip" href="./firmware/04_energy_relay/17_energy_relay.ino">Relay Control</a>
-          <a class="chip" href="./firmware/05_energy_relay_sg90/18_energy_mqtt_relay_sg90.ino">SG90 Control</a>
-          <a class="chip" href="./firmware/06_energy_relay_sg90_sensor/19_energy_mqtt_relay_sg90_sensor.ino">Sensor Fusion</a>
+          <a class="chip" href="../README.md">Project README</a>
+          <a class="chip" href="../firmware/README.md">Firmware README</a>
+          <a class="chip" href="../firmware/01_smart_meter/14_smart_meter.ino">Smart Meter</a>
+          <a class="chip" href="../firmware/02_energy_oled/14_ENERGY_OLED.ino">OLED Dashboard</a>
+          <a class="chip" href="../firmware/03_energy_mqtt/16_energy_mqtt.ino">MQTT Telemetry</a>
+          <a class="chip" href="../firmware/04_energy_relay/17_energy_relay.ino">Relay Control</a>
+          <a class="chip" href="../firmware/05_energy_relay_sg90/18_energy_mqtt_relay_sg90.ino">SG90 Control</a>
+          <a class="chip" href="../firmware/06_energy_relay_sg90_sensor/19_energy_mqtt_relay_sg90_sensor.ino">Sensor Fusion</a>
         </div>
         <div class="footer">Built for GitHub Pages. Keep `secrets.h` local and out of version control.</div>
       </section>
