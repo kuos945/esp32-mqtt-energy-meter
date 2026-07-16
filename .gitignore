@@ -1,0 +1,21 @@
+# Arduino / ESP32 build outputs
+build/
+build_*/
+*.bin
+*.elf
+*.map
+*.lst
+*.d
+*.o
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Local secrets
+secrets.h
+*.local.h
+
