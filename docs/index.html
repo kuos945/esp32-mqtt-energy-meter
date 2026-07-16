@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ESP32 MQTT Energy Meter 專案展示頁，整理韌體版本、架構與 GitHub repository 內容。"
+    />
+    <title>esp32-mqtt-energy-meter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #08131f;
+        --bg2: #0d1f31;
+        --panel: rgba(10, 20, 31, 0.72);
+        --panel-strong: rgba(13, 27, 44, 0.92);
+        --line: rgba(154, 190, 255, 0.18);
+        --text: #e8f1ff;
+        --muted: #9db2cc;
+        --accent: #68e1fd;
+        --accent2: #9d7bff;
+        --good: #48d49a;
+        --warning: #ffcc66;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 20% 20%, rgba(104, 225, 253, 0.16), transparent 30%),
+          radial-gradient(circle at 80% 10%, rgba(157, 123, 255, 0.18), transparent 28%),
+          radial-gradient(circle at 80% 80%, rgba(72, 212, 154, 0.11), transparent 30%),
+          linear-gradient(160deg, var(--bg), var(--bg2));
+        min-height: 100vh;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 90%);
+        pointer-events: none;
+        opacity: 0.35;
+      }
+      .wrap { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 56px; position: relative; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0 28px; }
+      .brand { display: flex; flex-direction: column; gap: 4px; }
+      .brand .kicker { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+      .brand h1 { margin: 0; font-size: clamp(2.4rem, 5vw, 4.9rem); line-height: 0.95; letter-spacing: -0.06em; }
+      .nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+      .nav a, .pill, .chip {
+        font-family: "IBM Plex Mono", monospace;
+        text-decoration: none;
+        color: var(--text);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 12px;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+      .nav a:hover { transform: translateY(-1px); border-color: rgba(104, 225, 253, 0.45); background: rgba(104, 225, 253, 0.1); }
+      .hero { display: grid; grid-template-columns: 1.45fr 0.95fr; gap: 18px; align-items: stretch; }
+      .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); backdrop-filter: blur(16px); }
+      .panel.hero-copy { padding: 28px; position: relative; overflow: hidden; }
+      .hero-copy p { margin: 18px 0 0; color: var(--muted); font-size: 1.05rem; max-width: 68ch; line-height: 1.7; }
+      .status-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+      .status { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+      .status .dot { width: 9px; height: 9px; border-radius: 999px; background: var(--good); box-shadow: 0 0 0 5px rgba(72, 212, 154, 0.14); }
+      .hero-aside { padding: 24px; display: grid; gap: 14px; }
+      .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .metric { padding: 16px; border-radius: 20px; background: var(--panel-strong); border: 1px solid var(--line); }
+      .metric .label { font-family: "IBM Plex Mono", monospace; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+      .metric .value { margin-top: 10px; font-size: 1.5rem; letter-spacing: -0.04em; }
+      .meter-card { border-radius: 24px; padding: 18px; background: linear-gradient(180deg, rgba(8, 19, 31, 0.5), rgba(10, 20, 31, 0.9)); border: 1px solid rgba(104, 225, 253, 0.15); position: relative; min-height: 210px; overflow: hidden; }
+      .meter-screen { display: grid; gap: 10px; }
+      .meter-screen .screen-header { display: flex; justify-content: space-between; align-items: center; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); }
+      .meter-screen .readout { margin-top: 10px; padding: 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(104, 225, 253, 0.12); }
+      .readout .row { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+      .readout .row:last-child { border-bottom: 0; }
+      .readout .row b { color: var(--accent); font-weight: 500; }
+      .section { margin-top: 18px; display: grid; gap: 18px; }
+      .section h2 { margin: 0 0 6px; font-size: 1.6rem; letter-spacing: -0.04em; }
+      .section p.lead { margin: 0; color: var(--muted); line-height: 1.7; }
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      .card { padding: 18px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
+      .card h3 { margin: 0 0 10px; font-size: 1.05rem; }
+      .card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
+      .timeline { display: grid; gap: 12px; }
+      .step { display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 16px 18px; border-radius: 22px; background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(154, 190, 255, 0.12); }
+      .step .tag { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 12px; letter-spacing: 0.12em; }
+      .step h3 { margin: 0 0 6px; }
+      .step p { margin: 0; color: var(--muted); line-height: 1.6; }
+      .links { display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip { display: inline-flex; align-items: center; gap: 8px; }
+      .chip::before { content: "•"; color: var(--accent); }
+      .footer { margin-top: 18px; padding: 18px 0 0; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+      .code { margin-top: 14px; padding: 16px; border-radius: 18px; border: 1px solid rgba(104, 225, 253, 0.18); background: rgba(4, 10, 16, 0.72); overflow-x: auto; font-family: "IBM Plex Mono", monospace; font-size: 12px; line-height: 1.6; color: #dceaff; }
+      .code span { color: var(--accent); }
+      @media (max-width: 960px) {
+        .hero, .cards { grid-template-columns: 1fr; }
+        .topbar { flex-direction: column; align-items: flex-start; }
+      }
+      @media (max-width: 640px) {
+        .wrap { width: min(100vw - 20px, 1180px); padding-top: 18px; }
+        .panel.hero-copy, .hero-aside { padding: 18px; }
+        .metric-grid { grid-template-columns: 1fr; }
+        .step { grid-template-columns: 1fr; gap: 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="brand">
+          <div class="kicker">ESP32 + MQTT + ENERGY METER</div>
+          <h1>esp32-mqtt-energy-meter</h1>
+        </div>
+        <nav class="nav" aria-label="Section navigation">
+          <a href="#overview">Overview</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#versions">Versions</a>
+          <a href="#source">Source</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <section class="panel hero-copy" id="overview">
+          <span class="pill">GitHub Pages ready</span>
+          <p>
+            這個 repo 整理了 ESP32 MQTT Energy Meter 的完整成果，包含電表讀取、
+            OLED 顯示、MQTT 上報、繼電器控制、SG90 延伸與感測整合等版本。首頁提供
+            專案導覽、架構摘要與韌體版本入口，適合直接作為展示頁使用。
+          </p>
+          <div class="status-row">
+            <div class="status"><span class="dot"></span> MQTT telemetry</div>
+            <div class="status">
+              <span class="dot" style="background: var(--accent2); box-shadow: 0 0 0 5px rgba(157, 123, 255, 0.14)"></span>
+              OLED dashboard
+            </div>
+            <div class="status">
+              <span class="dot" style="background: var(--warning); box-shadow: 0 0 0 5px rgba(255, 204, 102, 0.14)"></span>
+              Relay & servo control
+            </div>
+          </div>
+          <div class="code" aria-label="Project snippet">
+            <div><span>Serial2</span> -> Meter frame</div>
+            <div><span>Decode</span> -> Voltage / Current / Power / Energy</div>
+            <div><span>Publish</span> -> MQTT JSON payload</div>
+            <div><span>Render</span> -> OLED / U8g2 screens</div>
+          </div>
+        </section>
+
+        <aside class="panel hero-aside">
+          <div class="metric-grid">
+            <div class="metric">
+              <div class="label">Firmware stages</div>
+              <div class="value">6</div>
+            </div>
+            <div class="metric">
+              <div class="label">Core sensors</div>
+              <div class="value">3+</div>
+            </div>
+            <div class="metric">
+              <div class="label">Display stacks</div>
+              <div class="value">2</div>
+            </div>
+            <div class="metric">
+              <div class="label">MQTT topics</div>
+              <div class="value">2</div>
+            </div>
+          </div>
+          <div class="meter-card">
+            <div class="meter-screen">
+              <div class="screen-header">
+                <span>ENERGY METER</span>
+                <span>ONLINE</span>
+              </div>
+              <div class="readout">
+                <div class="row"><span>V</span><b>110.2 V</b></div>
+                <div class="row"><span>I</span><b>0.532 A</b></div>
+                <div class="row"><span>P</span><b>58.4 W</b></div>
+                <div class="row"><span>E</span><b>1.274 kWh</b></div>
+                <div class="row"><span>PF</span><b>0.97</b></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <section class="section" id="architecture">
+        <div>
+          <h2>專案架構</h2>
+          <p class="lead">
+            repo 已把原本的韌體版本整理成可瀏覽的 firmware 結構，並把各版本的責任劃分清楚，方便後續維護與展示。
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Meter Reading</h3>
+            <p>以 `Serial2` 接收電表 frame，負責解析電壓、電流、功率、累積電量與功率因數等欄位。</p>
+          </article>
+          <article class="card">
+            <h3>Display</h3>
+            <p>使用 OLED 與 U8g2 呈現即時資訊，適合在設備本機直接看見運作狀態。</p>
+          </article>
+          <article class="card">
+            <h3>Connectivity</h3>
+            <p>透過 Wi-Fi 與 MQTT 將資料送到 broker，並支援 relay 與 SG90 延伸控制。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="versions">
+        <div>
+          <h2>韌體版本</h2>
+          <p class="lead">這些版本對應 repo 中的 firmware 目錄，適合作為展示頁上的導覽入口。</p>
+        </div>
+        <div class="timeline">
+          <div class="step"><div class="tag">01</div><div><h3>Smart Meter</h3><p>基礎讀表版本，先把 meter protocol 與資料流打通。</p></div></div>
+          <div class="step"><div class="tag">02</div><div><h3>OLED Dashboard</h3><p>在 128x64 OLED 上顯示即時數值與狀態。</p></div></div>
+          <div class="step"><div class="tag">03</div><div><h3>MQTT Telemetry</h3><p>把量測值封裝成 JSON 後送到 MQTT broker。</p></div></div>
+          <div class="step"><div class="tag">04</div><div><h3>Relay Control</h3><p>加入 MQTT 指令控制繼電器開關。</p></div></div>
+          <div class="step"><div class="tag">05</div><div><h3>SG90 Expansion</h3><p>延伸支援 SG90 伺服控制，讓專案更完整。</p></div></div>
+          <div class="step"><div class="tag">06</div><div><h3>Sensor Fusion</h3><p>加入額外感測器整合，示範更進階的擴充方式。</p></div></div>
+        </div>
+      </section>
+
+      <section class="section" id="source">
+        <div>
+          <h2>Repo 導覽</h2>
+          <p class="lead">以下連結可直接進入 repo 內的重要檔案，方便瀏覽專案成果與韌體版本。</p>
+        </div>
+        <div class="links">
+          <a class="chip" href="./README.md">Project README</a>
+          <a class="chip" href="./firmware/README.md">Firmware README</a>
+          <a class="chip" href="./firmware/01_smart_meter/14_smart_meter.ino">Smart Meter</a>
+          <a class="chip" href="./firmware/02_energy_oled/14_ENERGY_OLED.ino">OLED Dashboard</a>
+          <a class="chip" href="./firmware/03_energy_mqtt/16_energy_mqtt.ino">MQTT Telemetry</a>
+          <a class="chip" href="./firmware/04_energy_relay/17_energy_relay.ino">Relay Control</a>
+          <a class="chip" href="./firmware/05_energy_relay_sg90/18_energy_mqtt_relay_sg90.ino">SG90 Control</a>
+          <a class="chip" href="./firmware/06_energy_relay_sg90_sensor/19_energy_mqtt_relay_sg90_sensor.ino">Sensor Fusion</a>
+        </div>
+        <div class="footer">Built for GitHub Pages. Keep `secrets.h` local and out of version control.</div>
+      </section>
+    </div>
+  </body>
+</html>
