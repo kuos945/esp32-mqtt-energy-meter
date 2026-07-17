@@ -1,0 +1,93 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1080" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1422"/>
+      <stop offset="1" stop-color="#050A12"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="210" y1="180" x2="990" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68E1FD" stop-opacity="0.42"/>
+      <stop offset="0.5" stop-color="#9D7BFF" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#48D49A" stop-opacity="0.34"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="220" y1="150" x2="980" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101E32"/>
+      <stop offset="1" stop-color="#07111C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="110" x2="1080" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68E1FD"/>
+      <stop offset="1" stop-color="#9D7BFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <ellipse cx="330" cy="210" rx="220" ry="160" fill="#68E1FD" fill-opacity="0.11"/>
+  <ellipse cx="920" cy="170" rx="240" ry="170" fill="#9D7BFF" fill-opacity="0.12"/>
+  <ellipse cx="840" cy="690" rx="250" ry="180" fill="#48D49A" fill-opacity="0.08"/>
+  <g opacity="0.18">
+    <path d="M70 160H1130" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="6 10"/>
+    <path d="M120 760H1080" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="6 10"/>
+    <path d="M160 120V820" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="6 10"/>
+    <path d="M1040 120V820" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="6 10"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="130" y="130" width="940" height="640" rx="36" fill="url(#panel)" stroke="url(#glow)" stroke-width="2"/>
+  </g>
+  <g>
+    <rect x="170" y="170" width="250" height="210" rx="28" fill="#0E1A2B" stroke="#2C4263" stroke-width="1.5"/>
+    <rect x="190" y="192" width="210" height="25" rx="12.5" fill="#14253E"/>
+    <text x="205" y="209" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">ENERGY / MQTT</text>
+    <rect x="190" y="240" width="210" height="120" rx="18" fill="#050B14" stroke="#22334D"/>
+    <circle cx="225" cy="273" r="20" fill="#68E1FD" fill-opacity="0.15" stroke="#68E1FD"/>
+    <path d="M212 273H238M225 260V286" stroke="#68E1FD" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="260" y="269" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">110.2V</text>
+    <text x="260" y="302" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">0.532A 繚 58.4W</text>
+    <text x="260" y="332" fill="#48D49A" font-family="IBM Plex Mono, monospace" font-size="12">MQTT ONLINE</text>
+  </g>
+  <g>
+    <rect x="470" y="170" width="260" height="210" rx="28" fill="#0E1A2B" stroke="#2C4263" stroke-width="1.5"/>
+    <rect x="490" y="192" width="220" height="25" rx="12.5" fill="#14253E"/>
+    <text x="505" y="209" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">OLED DASHBOARD</text>
+    <rect x="490" y="240" width="220" height="120" rx="18" fill="#06101A" stroke="#22334D"/>
+    <g fill="#ECF4FF" font-family="IBM Plex Mono, monospace" font-size="14">
+      <text x="510" y="272">V: 110.2</text>
+      <text x="510" y="296">I: 0.532</text>
+      <text x="510" y="320">P: 58.4W</text>
+      <text x="510" y="344">E: 1.274kWh</text>
+    </g>
+    <circle cx="656" cy="302" r="28" fill="none" stroke="#9D7BFF" stroke-width="2" stroke-dasharray="10 9"/>
+    <path d="M652 292L665 302L652 312" stroke="#9D7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="770" y="170" width="240" height="210" rx="28" fill="#0E1A2B" stroke="#2C4263" stroke-width="1.5"/>
+    <rect x="790" y="192" width="200" height="25" rx="12.5" fill="#14253E"/>
+    <text x="805" y="209" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">CONTROL LAYER</text>
+    <rect x="790" y="240" width="200" height="120" rx="18" fill="#06101A" stroke="#22334D"/>
+    <g>
+      <rect x="812" y="262" width="78" height="18" rx="9" fill="#68E1FD" fill-opacity="0.14" stroke="#68E1FD"/>
+      <text x="831" y="275" fill="#ECF4FF" font-family="IBM Plex Mono, monospace" font-size="10">RELAY</text>
+      <rect x="812" y="292" width="78" height="18" rx="9" fill="#48D49A" fill-opacity="0.14" stroke="#48D49A"/>
+      <text x="832" y="305" fill="#ECF4FF" font-family="IBM Plex Mono, monospace" font-size="10">SG90</text>
+      <rect x="812" y="322" width="138" height="18" rx="9" fill="#9D7BFF" fill-opacity="0.14" stroke="#9D7BFF"/>
+      <text x="831" y="335" fill="#ECF4FF" font-family="IBM Plex Mono, monospace" font-size="10">SENSOR FUSION</text>
+    </g>
+  </g>
+  <g>
+    <path d="M300 430C390 360 465 350 560 430C653 510 718 520 830 440" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M285 448C393 470 458 504 565 546C664 584 745 592 845 560" stroke="#48D49A" stroke-width="4" stroke-linecap="round" stroke-dasharray="12 12"/>
+    <circle cx="300" cy="430" r="10" fill="#68E1FD"/>
+    <circle cx="560" cy="430" r="10" fill="#9D7BFF"/>
+    <circle cx="830" cy="440" r="10" fill="#48D49A"/>
+  </g>
+  <g>
+    <rect x="210" y="540" width="780" height="140" rx="30" fill="#09121D" stroke="#22334D"/>
+    <text x="240" y="588" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="13">Serial2</text>
+    <text x="315" y="588" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="26" font-weight="700">-> decode -></text>
+    <text x="520" y="588" fill="#9D7BFF" font-family="IBM Plex Mono, monospace" font-size="13">MQTT publish</text>
+    <text x="240" y="628" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="12">Voltage 繚 Current 繚 Power 繚 Energy 繚 PF</text>
+    <text x="240" y="654" fill="#48D49A" font-family="IBM Plex Mono, monospace" font-size="12">OLED / Relay / SG90 / Sensor extensions</text>
+  </g>
+  <defs>
+    <filter id="shadow" x="90" y="100" width="1020" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+</svg>
