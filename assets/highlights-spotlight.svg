@@ -1,0 +1,64 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="40" x2="1140" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111C"/>
+      <stop offset="1" stop-color="#0C1727"/>
+    </linearGradient>
+    <radialGradient id="spot1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 220) rotate(90) scale(140 140)">
+      <stop stop-color="#68E1FD" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#68E1FD" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spot2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 180) rotate(90) scale(160 160)">
+      <stop stop-color="#9D7BFF" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#9D7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spot3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 240) rotate(90) scale(140 140)">
+      <stop stop-color="#48D49A" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#48D49A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="frame" x1="140" y1="130" x2="1060" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101E32"/>
+      <stop offset="1" stop-color="#07111C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="42" fill="url(#bg)"/>
+  <ellipse cx="240" cy="220" rx="150" ry="150" fill="url(#spot1)"/>
+  <ellipse cx="600" cy="180" rx="180" ry="180" fill="url(#spot2)"/>
+  <ellipse cx="960" cy="240" rx="150" ry="150" fill="url(#spot3)"/>
+  <g>
+    <rect x="120" y="110" width="960" height="500" rx="34" fill="url(#frame)" stroke="#22334D"/>
+    <rect x="160" y="150" width="280" height="150" rx="28" fill="#0D1929" stroke="#68E1FD" stroke-opacity="0.28"/>
+    <rect x="440" y="150" width="280" height="150" rx="28" fill="#0D1929" stroke="#9D7BFF" stroke-opacity="0.28"/>
+    <rect x="720" y="150" width="320" height="150" rx="28" fill="#0D1929" stroke="#48D49A" stroke-opacity="0.28"/>
+
+    <circle cx="215" cy="195" r="24" fill="#68E1FD" fill-opacity="0.18" stroke="#68E1FD"/>
+    <path d="M203 195H227M215 183V207" stroke="#68E1FD" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="495" cy="195" r="24" fill="#9D7BFF" fill-opacity="0.18" stroke="#9D7BFF"/>
+    <path d="M483 195L495 183L507 195L495 207Z" stroke="#9D7BFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="785" cy="195" r="24" fill="#48D49A" fill-opacity="0.18" stroke="#48D49A"/>
+    <path d="M772 198C778 186 792 186 798 198C793 211 777 211 772 198Z" stroke="#48D49A" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <text x="255" y="189" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">?單??葫</text>
+    <text x="255" y="223" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">?餃? / ?餅? / ?? / ?駁?</text>
+    <text x="535" y="189" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">皜?憿舐內</text>
+    <text x="535" y="223" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">OLED ??U8g2 閬死撅?/text>
+    <text x="835" y="189" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">?舀?蝥??/text>
+    <text x="835" y="223" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">Relay / SG90 / Sensor</text>
+
+    <rect x="180" y="350" width="840" height="190" rx="28" fill="#08111B" stroke="#22334D"/>
+    <path d="M240 450C330 400 390 390 470 436C555 486 630 492 720 438C802 388 870 384 940 412" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M240 500C330 480 398 470 480 500C560 530 628 530 700 495C776 458 862 456 940 470" stroke="#48D49A" stroke-width="4" stroke-linecap="round" stroke-dasharray="11 10"/>
+    <defs>
+      <linearGradient id="line" x1="240" y1="390" x2="940" y2="470" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#68E1FD"/>
+        <stop offset="0.5" stop-color="#9D7BFF"/>
+        <stop offset="1" stop-color="#48D49A"/>
+      </linearGradient>
+    </defs>
+    <circle cx="240" cy="450" r="10" fill="#68E1FD"/>
+    <circle cx="470" cy="436" r="10" fill="#9D7BFF"/>
+    <circle cx="720" cy="438" r="10" fill="#48D49A"/>
+    <circle cx="940" cy="412" r="10" fill="#FFCC66"/>
+    <text x="242" y="515" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="12">?鈭桅?隞亥?閬箇?憟葡韏瑚?嚗??梯??湔?撅斗活??/text>
+  </g>
+</svg>
