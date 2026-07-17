@@ -1,0 +1,71 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="30" x2="1140" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111C"/>
+      <stop offset="1" stop-color="#0A1726"/>
+    </linearGradient>
+    <linearGradient id="lane" x1="110" y1="360" x2="1090" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68E1FD"/>
+      <stop offset="0.5" stop-color="#9D7BFF"/>
+      <stop offset="1" stop-color="#48D49A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="42" fill="url(#bg)"/>
+  <g opacity="0.2">
+    <path d="M70 110H1130" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+    <path d="M70 610H1130" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+  </g>
+  <g>
+    <rect x="90" y="160" width="200" height="120" rx="26" fill="#0F1D31" stroke="#68E1FD" stroke-opacity="0.35"/>
+    <text x="134" y="214" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="16">Serial2</text>
+    <text x="134" y="246" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">?餉”頛詨</text>
+  </g>
+  <path d="M290 220H380" stroke="url(#lane)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M362 208L380 220L362 232" stroke="#9D7BFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g>
+    <rect x="380" y="140" width="220" height="180" rx="28" fill="#0F1D31" stroke="#9D7BFF" stroke-opacity="0.35"/>
+    <text x="416" y="192" fill="#9D7BFF" font-family="IBM Plex Mono, monospace" font-size="16">閫??</text>
+    <text x="416" y="228" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">?澆???/text>
+    <text x="416" y="260" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">?詨潭甇?/text>
+    <text x="416" y="286" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">?桐???</text>
+  </g>
+  <path d="M600 220H690" stroke="url(#lane)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M672 208L690 220L672 232" stroke="#68E1FD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g>
+    <rect x="690" y="140" width="230" height="180" rx="28" fill="#0F1D31" stroke="#68E1FD" stroke-opacity="0.35"/>
+    <text x="726" y="192" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="16">MQTT</text>
+    <text x="726" y="228" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">鞈?銝</text>
+    <text x="726" y="260" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">JSON payload</text>
+    <text x="726" y="286" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">Topic 蝞∠?</text>
+  </g>
+  <path d="M920 220H1010" stroke="url(#lane)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M992 208L1010 220L992 232" stroke="#48D49A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g>
+    <rect x="1010" y="140" width="100" height="180" rx="28" fill="#0F1D31" stroke="#48D49A" stroke-opacity="0.35"/>
+    <text x="1038" y="190" fill="#48D49A" font-family="IBM Plex Mono, monospace" font-size="15">UI</text>
+    <text x="1034" y="228" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">OLED</text>
+    <text x="1032" y="262" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">Relay</text>
+  </g>
+
+  <g>
+    <rect x="150" y="390" width="900" height="180" rx="30" fill="#08111B" stroke="#22334D"/>
+    <rect x="190" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <rect x="330" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <rect x="470" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <rect x="610" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <rect x="750" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <rect x="890" y="430" width="120" height="80" rx="18" fill="#0F1D31" stroke="#22334D"/>
+    <text x="215" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">01</text>
+    <text x="354" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">02</text>
+    <text x="494" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">03</text>
+    <text x="634" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">04</text>
+    <text x="774" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">05</text>
+    <text x="914" y="476" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="11">06</text>
+    <text x="200" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">Meter</text>
+    <text x="338" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">OLED</text>
+    <text x="475" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">MQTT</text>
+    <text x="618" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">Relay</text>
+    <text x="758" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">SG90</text>
+    <text x="898" y="505" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">Sensor</text>
+  </g>
+</svg>
