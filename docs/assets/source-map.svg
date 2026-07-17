@@ -1,0 +1,56 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="20" x2="1140" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111C"/>
+      <stop offset="1" stop-color="#0D1F31"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="120" y1="130" x2="1080" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68E1FD"/>
+      <stop offset="0.5" stop-color="#9D7BFF"/>
+      <stop offset="1" stop-color="#48D49A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="42" fill="url(#bg)"/>
+  <g opacity="0.18">
+    <path d="M80 100H1120" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+    <path d="M80 620H1120" stroke="#B7D4FF" stroke-width="1.5" stroke-dasharray="5 10"/>
+  </g>
+  <g>
+    <rect x="90" y="120" width="320" height="500" rx="32" fill="#0F1D31" stroke="#22334D"/>
+    <text x="126" y="168" fill="#68E1FD" font-family="IBM Plex Mono, monospace" font-size="16">Repository Map</text>
+    <rect x="126" y="198" width="240" height="16" rx="8" fill="#14253E"/>
+    <rect x="126" y="230" width="200" height="16" rx="8" fill="#14253E"/>
+    <rect x="126" y="262" width="220" height="16" rx="8" fill="#14253E"/>
+    <rect x="126" y="310" width="168" height="24" rx="12" fill="#68E1FD" fill-opacity="0.14" stroke="#68E1FD"/>
+    <rect x="126" y="348" width="192" height="24" rx="12" fill="#9D7BFF" fill-opacity="0.14" stroke="#9D7BFF"/>
+    <rect x="126" y="386" width="156" height="24" rx="12" fill="#48D49A" fill-opacity="0.14" stroke="#48D49A"/>
+    <rect x="126" y="438" width="240" height="120" rx="22" fill="#08111B" stroke="#22334D"/>
+    <text x="148" y="478" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">README</text>
+    <text x="148" y="510" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">隤芣?撠??刻???閬賢??/text>
+    <text x="148" y="538" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">靽? placeholder secrets</text>
+  </g>
+
+  <g>
+    <rect x="460" y="120" width="650" height="230" rx="32" fill="#0F1D31" stroke="#22334D"/>
+    <text x="494" y="168" fill="#9D7BFF" font-family="IBM Plex Mono, monospace" font-size="16">Code Paths</text>
+    <rect x="494" y="194" width="250" height="20" rx="10" fill="#14253E"/>
+    <rect x="494" y="226" width="290" height="20" rx="10" fill="#14253E"/>
+    <rect x="494" y="258" width="230" height="20" rx="10" fill="#14253E"/>
+    <rect x="494" y="290" width="330" height="20" rx="10" fill="#14253E"/>
+    <rect x="860" y="178" width="210" height="140" rx="24" fill="#08111B" stroke="#22334D"/>
+    <text x="884" y="222" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="20" font-weight="700">Firmware versions</text>
+    <text x="884" y="255" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">01 -> 06</text>
+    <text x="884" y="282" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">??郊?楛</text>
+  </g>
+
+  <g>
+    <rect x="460" y="390" width="650" height="230" rx="32" fill="#0F1D31" stroke="#22334D"/>
+    <text x="494" y="438" fill="#48D49A" font-family="IBM Plex Mono, monospace" font-size="16">Safe Notes</text>
+    <path d="M500 470H1060" stroke="url(#stroke)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="560" cy="470" r="10" fill="#68E1FD"/>
+    <circle cx="760" cy="470" r="10" fill="#9D7BFF"/>
+    <circle cx="960" cy="470" r="10" fill="#48D49A"/>
+    <text x="494" y="528" fill="#ECF4FF" font-family="Space Grotesk, sans-serif" font-size="20" font-weight="700">撣喳?銝?嚗?皞?璆??亙?湔??/text>
+    <text x="494" y="562" fill="#A0B6CF" font-family="IBM Plex Mono, monospace" font-size="13">GitHub links keep the code accessible without exposing secrets.</text>
+  </g>
+</svg>
